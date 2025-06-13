@@ -1,5 +1,10 @@
 const express = require("express");
 const router = express.Router();
+require('dotenv').config();
+
+router.get("/", (req, res) => {
+  res.status(200).json({ message: "Welcome to the Service Hub Server" });
+});
 
 router.use("/users", require("./userRoutes"));
 router.use("/auth", require("./authRoutes"));

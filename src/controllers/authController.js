@@ -1,6 +1,6 @@
 const { checkEmailExists, registerUser,sendVerificationEmail } = require("../services/authService");
 const axios = require("axios");
-const FIREBASE_API_KEY = 'AIzaSyCFUNQnXIWsMoLnCoVRPi63g-7W0ecSj3Q';
+const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY ;
 
 async function register(req, res) {
   const { email, password, firstName, lastName, photoUrl, role } = req.body;
@@ -39,6 +39,8 @@ async function register(req, res) {
 
 async function signIn(req, res) {
   const { email, password } = req.body;
+
+  console.log("FIREBASE_API_KEY:", FIREBASE_API_KEY);
 
   if (!email || !password)
     return res.status(400).json({ message: "Email and password required" });
